@@ -1,131 +1,133 @@
 body {
-    background-color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+
+background: radial-gradient(circle at top, #ffe4ef, #ffb6d5, #ff8fc1);
+overflow: hidden;
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+min-height: 100vh;
+}
+
+/* Floating hearts layer */
+.hearts {
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 0;
+overflow: hidden;
+}
+
+.heart {
+position: absolute;
+bottom: -40px;
+width: 18px;
+height: 18px;
+background: rgba(255, 0, 90, 0.35);
+transform: rotate(45deg);
+animation: floatUp linear infinite;
+}
+
+.heart::before,
+.heart::after {
+content: “”;
+position: absolute;
+width: 18px;
+height: 18px;
+background: inherit;
+border-radius: 50%;
+}
+
+.heart::before {
+left: -9px;
+top: 0;
+}
+
+.heart::after {
+top: -9px;
+left: 0;
+}
+
+@keyframes floatUp {
+from {
+transform: translateY(0) rotate(45deg);
+opacity: 0;
+}
+10% {
+opacity: 1;
+}
+to {
+transform: translateY(-110vh) rotate(45deg);
+opacity: 0;
+}
+}
+
+/* Main content */
+.container {
+position: relative;
+z-index: 2;
+margin-top: 20px;
+padding: 20px;
+text-align: center;
+}
+
+.banner-gif img {
+height: 250px;
 }
 
 .buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    flex-direction: row;
-    align-items: end;
-    flex-wrap: wrap;
-}
-
-#no-button {
-    margin: 0 10px;
-    color: white;
-    background-color: red;
-    height: 40px !important;
-    width: auto;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-
-    p {
-        margin: 0;
-        object-fit: contain;
-    }
+display: flex;
+justify-content: center;
+margin-top: 20px;
+gap: 15px;
 }
 
 #yes-button {
-    margin: 0 10px;
-    color: white;
-    border: none;
-    background-color: green;
-    cursor: pointer;
-    height: 40px;
-
-    p {
-        margin: 0;
-        object-fit: contain;
-    }
+color: white;
+border: none;
+background-color: green;
+cursor: pointer;
+height: 40px;
+padding: 0 20px;
+border-radius: 8px;
 }
 
-/* Make responsive for mobile */
-@media (max-width: 768px) {
-    body {
-        padding: 0 20px;
-    }
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 20px;
-    padding: 20px;
-    text-align: center;
+#no-button {
+color: white;
+background-color: red;
+border: none;
+cursor: pointer;
+height: 40px;
+padding: 0 20px;
+border-radius: 8px;
 }
 
 .message {
-    display: none;
-}
-
-.banner-gif {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-
-    img {
-        width: auto;
-        height: 250px;
-    }
+display: none;
+margin-top: 20px;
 }
 
 .language-selector {
-    margin-top: 30px;
-    position: unset;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.language-selector label {
-    margin-right: 10px;
+margin-top: 30px;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
 }
 
 .language-selector select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+padding: 5px;
+font-size: 16px;
 }
 
 .creator {
-    text-decoration: none;
-    color: #333;
-}
-
-.creator:visited {
-    text-decoration: none;
-    color: #333;
+color: #333;
 }
 
 .creator:hover {
-    text-decoration: underline;
-    color: #555;
-}
-
-/* CSS For Mobile */
-@media (max-width: 768px) {
-    .language-selector {
-        position: unset;
-        margin-top: 30px;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
+text-decoration: underline;
 }

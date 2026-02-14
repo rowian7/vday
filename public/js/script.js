@@ -97,6 +97,6 @@ function changeLanguage() {
   no_button.textContent = answers_no[language][0];
 
   const banner = document.getElementById("banner");
-  banner.src = "./public/images/mid.gif";
+  banner.src = "./public/images/maina.jpeg";
   refreshBanner();
 }
