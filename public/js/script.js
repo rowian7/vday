@@ -6,24 +6,24 @@ const answers_no = {
     "YES?",
     "Y."
   ],
-  dari: [
-    "نه؟",
-    "چرا نه؟",
-    "مرا دوست نداری؟",
-    "بله",
-    "بله"
+  acoustic: [
+    "No",
+    "No",
+    "No",
+    "Yes"
   ]
 };
 
 const answers_yes = {
   english: "Yes",
-  dari: "بله"
+  acoustic: "Yes"
 };
 
 let language = "english";
 
 const no_button = document.getElementById("no-button");
 const yes_button = document.getElementById("yes-button");
+const question_heading = document.getElementById("question-heading");
 
 let index = 0;
 let size = 50;
@@ -40,6 +40,20 @@ no_button.addEventListener("click", () => {
   }
   clicks++;
 
+  if (language === "acoustic") {
+    if (clicks === 1) {
+      question_heading.textContent = "You have no choice";
+      yes_button.textContent = "Yes";
+      no_button.textContent = "No";
+    } else if (clicks >= 2) {
+      question_heading.textContent = "hahahaha now you have no choice heheh I love you";
+      yes_button.textContent = "Yes";
+      no_button.textContent = "Yes";
+    }
+  } else {
+    no_button.textContent = list[index];
+  }
+
   size += 40;
   yes_button.style.height = `${size}px`;
   yes_button.style.width = `${size}px`;
@@ -50,8 +64,6 @@ no_button.addEventListener("click", () => {
     yes_button.click();
     return;
   }
-
-  no_button.textContent = list[index];
 });
 
 yes_button.addEventListener("click", () => {
@@ -76,17 +88,14 @@ function changeLanguage() {
 
   if (!answers_no[language]) language = "english";
 
-  // Question ALWAYS stays in English
-  document.getElementById("question-heading").textContent =
-    "Will you be my valentine?";
+  question_heading.textContent = "Will you be my valentine Fifi?";
 
-  // Success message
-  document.getElementById("success-message").textContent =
-    language === "dari"
-      ? "خیر ببینی جیگر"
-      : "Yipppie,enjoy your giftsssssss  :3";
+  if (language === "acoustic") {
+    document.getElementById("success-message").textContent = "I knew it! ❤️ :3";
+  } else {
+    document.getElementById("success-message").textContent = "Yipppie,enjoy wednesday  :3";
+  }
 
-  // Reset state
   index = 0;
   clicks = 0;
   size = 50;
