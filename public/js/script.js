@@ -9,7 +9,6 @@ const answers_no = {
   acoustic: [
     "No",
     "No",
-    "No",
     "Yes"
   ]
 };
@@ -42,11 +41,13 @@ no_button.addEventListener("click", () => {
 
   if (language === "acoustic") {
     if (clicks === 1) {
-      question_heading.textContent = "You have no choice";
+      // 1st No click: "Tf u mean no try again", buttons stay Yes | No
+      question_heading.textContent = "Tf u mean no try again";
       yes_button.textContent = "Yes";
       no_button.textContent = "No";
     } else if (clicks >= 2) {
-      question_heading.textContent = "hahahaha now you have no choice heheh I love you";
+      // 2nd No click: "why we pretending you have a choice ", both buttons become Yes | Yes
+      question_heading.textContent = "why we pretending you have a choice ";
       yes_button.textContent = "Yes";
       no_button.textContent = "Yes";
     }
@@ -60,6 +61,7 @@ no_button.addEventListener("click", () => {
 
   index++;
 
+  // Trigger success screen when clicking No on 3rd attempt or when reaching end of array
   if (index >= lastIndex) {
     yes_button.click();
     return;
